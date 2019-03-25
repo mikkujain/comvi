@@ -1,0 +1,28 @@
+{% extends 'website/master.html' %}
+
+{% block title %}
+    {{ object.name }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-title">
+        <h3><span class="semi-bold">{{ object.name }}</span></h3>
+    </div>
+    {% if preferences.show_stats %}
+        <h5 class="text-black semi-bold">ESTADÍSTICAS</h5>
+        <div class="row">
+            {% with property_interiors_stat as stat %}
+                {% include 'website/partial_stat.html' %}
+            {% endwith %}
+        </div>
+    {% endif %}
+    {% if preferences.show_services %}
+        <h5 class="text-black semi-bold">SERVICIOS (este mes)</h5>
+        <div class="row">
+            {% for stat in service_stats %}
+                {% include 'website/partial_stat.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

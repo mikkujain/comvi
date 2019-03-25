@@ -1,0 +1,12 @@
+{% extends 'admin/base.html' %}
+{% load preference_tags %}
+
+{% block title %}{{ title }} | {% preferences site_name %}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            {% preferences site_name %}
+            <span class="header-label">Admin</span></a>
+    </h1>
+{% endblock %}

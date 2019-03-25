@@ -1,0 +1,37 @@
+<table class="table table-striped table-fixed-layout table-hover" id="emails">
+    <thead>
+    <tr>
+        <th class="small-cell"></th>
+        <th class="medium-cell"></th>
+        <th></th>
+        <th class="medium-cell"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for message in messages %}
+        <tr>
+            <td class="small-cell v-align-middle">
+                {% if not message.is_seen %}
+                    <i class="fa fa-dot-circle-o"></i>
+                {% endif %}
+            </td>
+            <td class="clickable v-align-middle">
+                {{ message.user.first_name }} {{ message.user.last_name }}
+            </td>
+            <td class="clickable tablefull v-align-middle">
+                {% if message.priority == 1 %}
+                    <span class="label label-danger">Importante</span>
+                {% endif %}
+                <span class="muted"><a href="{% url 'website:inbox_detail' message.id %}">{{ message.subject }}</a></span>
+            </td>
+            <td class="clickable">
+                <span class="muted">{{ message.date_creation|date:"d M Y" }}</span>
+            </td>
+        </tr>
+    {% empty %}
+        <div class="align-middle">
+            <p>No hay mensajes por leer</p>
+        </div>
+    {% endfor %}
+    </tbody>
+</table>

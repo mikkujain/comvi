@@ -1,0 +1,55 @@
+{% extends 'website/master.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Periódico mural
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-title">
+        <h3><span class="semi-bold">Periódico mural</span></h3>
+    </div>
+
+    <div class="row ">
+        {% for post in posts %}
+            <div class="col-md-3 col-sm-6 col-lg-4">
+                <div class="widget-item ">
+                    <div class="tiles green overflow-hidden full-height">
+                        <div style="max-height:314px">
+                            <div class="overlayer bottom-right fullwidth">
+                                <div class="overlayer-wrapper">
+                                    <div class="tiles gradient-black p-l-20 p-r-20 p-b-20 p-t-20">
+                                        <div class="pull-right">
+                                            <a href="{% url 'website:newspaper' %}?property={{ post.property_id }}"
+                                               class="hashtags transparent"> #{{ post.property }}</a>
+                                            <a href="{% url 'website:newspaper' %}?category={{ post.category_id }}"
+                                               class="hashtags transparent"> #{{ post.category }}</a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if post.cover_image %}
+                                <img src="{{ post.cover_image.url }}" alt="" class="lazy hover-effect-img">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="tiles white ">
+                        <div class="tiles-body">
+                            <div class="row">
+                                <comment><span class="bold">{{ post.title }}</span></comment>
+                                <p>
+                                    <small>{{ post.date_creation }}</small>
+                                </p>
+                                <br>
+                                <p>{{ post.body|truncatechars:150 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

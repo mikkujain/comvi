@@ -1,0 +1,105 @@
+{% extends 'website/master.html' %}
+
+{% block title %}
+    Mis Mensajes ({{ request.user.unread_messages }})
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+        <h3><span class="semi-bold">Mis mensajes</span></h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row" id="inbox-wrapper">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="grid simple">
+                                <div class="grid-body no-border email-body">
+                                    <br>
+                                    <div class="row-fluid">
+                                        <div class="row-fluid dataTables_wrapper">
+                                            <h2 class=" inline">
+                                                Inbox
+                                            </h2>
+                                            <div class="pull-right margin-top-20">
+                                                <div class="dataTables_paginate paging_bootstrap pagination">
+                                                    <ul>
+                                                        <li class="prev {% if not page_obj.has_previous %}disabled{% endif %}">
+                                                            {% if page_obj.has_previous %}
+                                                                <a href="?page={{ page_obj.previous_page_number }}">
+                                                                    <i class="fa fa-chevron-left"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                        </li>
+                                                        {% if page_obj.has_previous %}
+                                                            <li>
+                                                                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                                                            </li>
+                                                        {% endif %}
+                                                        <li class="active">
+                                                            <a href="#">{{ page_obj.number }}</a>
+                                                        </li>
+                                                        {% if page_obj.has_next %}
+                                                            <li>
+                                                                <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                                                            </li>
+                                                        {% endif %}
+                                                        <li class="next {% if not page_obj.has_next %}disabled{% endif %}">
+                                                            {% if page_obj.has_next %}
+                                                                <a href="?page={{ page_obj.next_page_number }}">
+                                                                    <i class="fa fa-chevron-right"></i>
+                                                                </a>
+                                                            {% endif %}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="dataTables_info hidden-xs" id="example_info">
+                                                    Showing <b>{{ page_obj.start_index }}
+                                                    to {{ page_obj.end_index }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix">
+                                            </div>
+                                        </div>
+                                        <div id="email-list">
+                                            {% include 'website/partials/partial_email_table.html' %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-2">
+            <div class="inner-menu" style="padding-top: 0 !important; background-color: transparent !important;">
+                <div id="inner-menu">
+                    <div class="inner-wrapper">
+                        <a class="btn btn-block btn-primary" href="{% url 'website:send_email' %}"><span
+                                class="bold">REDACTAR</span></a>
+                    </div>
+                    <div class="inner-menu-content">
+                        <p class="menu-title">
+                            FOLDER <span class="pull-right"><i class="icon-refresh"></i></span>
+                        </p>
+                    </div>
+                    <ul class="big-items">
+                        <li class="{% if request.resolver_match.url_name == "inbox" %}active{% endif %}"
+                            style="text-align: left !important;">
+                            <a href="{% url 'website:inbox' %}">Inbox</a>
+                            <span class="badge badge-important">{{ request.user.unread_messages }}</span>
+                        </li>
+                        <li class="{% if request.resolver_match.url_name == "inbox_sent" %}active{% endif %}"
+                            style="text-align: left !important;">
+                            <a href="{% url 'website:inbox_sent' %}">Sent</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
