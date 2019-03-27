@@ -1,0 +1,66 @@
+{% load static from staticfiles %}
+<div class="row border-bottom">
+       <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+       
+       <!-- END RESPONSIVE MENU TOGGLER -->
+       <div class="header-quick-nav">
+           <!-- BEGIN TOP NAVIGATION MENU -->
+           <div class="pull-left">
+               <ul class="nav quick-section">
+                   <li class="quicklinks">
+                       <a href="#" class="" id="layout-condensed-toggle">
+                           <i class="material-icons">menu</i>
+                       </a>
+                   </li>
+               </ul>
+           </div>
+           <div id="notification-list" style="display:none">
+               <div style="width:300px">
+                   <!-- Render notifications here -->
+               </div>
+           </div>
+           <!-- END TOP NAVIGATION MENU -->
+           <!-- BEGIN CHAT TOGGLER -->
+           <div class="pull-right">
+               <div class="chat-toggler sm">
+                   <div class="profile-pic">
+                       {% with request.user.profile_picture as picture %}
+                           {% if picture %}
+                               <img src="{{ picture.url }}" alt="" width="35" height="35"/>
+                           {% else %}
+                               <img src="{% static 'assets/img/placeholder_profile_picture.webp' %}" width="35"
+                                    height="35" alt="">
+                           {% endif %}
+                       {% endwith %}
+                       <div class="availability-bubble online"></div>
+                   </div>
+               </div>
+               <ul class="nav quick-section ">
+                   <li class="quicklinks">
+                       <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="#" id="user-options">
+                           <i class="material-icons">tune</i>
+                       </a>
+                       <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+                           <li>
+                               <a href="{% url 'website:my_profile' %}"> Mi cuenta</a>
+                           </li>
+                           <li>
+                               <a href="{% url 'website:inbox' %}"> Mis mensajes
+                                   <span class="badge badge-important animated bounceIn">{{ request.user.unread_messages }}</span>
+                               </a>
+                           </li>
+                           <li class="divider"></li>
+                           <li>
+                               <a href="{% url 'website:logout' %}"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Cerrar
+                                   sesión</a>
+                           </li>
+                       </ul>
+                   </li>
+               </ul>
+           </div>
+           <!-- END CHAT TOGGLER -->
+       </div>
+       <!-- END TOP NAVIGATION MENU -->
+
+       </nav>
+       </div>

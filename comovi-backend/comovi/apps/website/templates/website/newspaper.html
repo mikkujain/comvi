@@ -6,12 +6,31 @@
 {% endblock %}
 
 {% block content %}
+  <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Periódico mural</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                      
+                        <li class="active">
+                            <strong>Periódico mural</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
 
-    <div class="page-title">
+                </div>
+            </div>
+   <!-- <div class="page-title">
         <h3><span class="semi-bold">Periódico mural</span></h3>
-    </div>
+    </div>-->
 
-    <div class="row ">
+ <div class="wrapper wrapper-content">
+            <div class="row animated fadeInRight">
+
+    
         {% for post in posts %}
             <div class="col-md-3 col-sm-6 col-lg-4">
                 <div class="widget-item ">
@@ -52,4 +71,6 @@
             </div>
         {% endfor %}
     </div>
+    
+      </div>
 {% endblock %}

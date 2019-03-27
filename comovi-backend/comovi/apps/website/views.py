@@ -15,6 +15,9 @@ from comovi.apps.website.dashboard import Dashboard
 from comovi.apps.website.forms import InboxMessageForm
 from .translations import translations
 
+from django.views.generic import UpdateView
+from .forms import ProfileModelForm
+
 
 # noinspection PyMethodMayBeStatic
 class LoginView(TemplateView):
@@ -47,6 +50,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
 class MyProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'website/my_profile.html'
+    
 
 
 class InboxView(LoginRequiredMixin, ListView):
@@ -218,3 +222,22 @@ class PayView(LoginRequiredMixin, DetailView):
     template_name = 'website/pay.html'
     model = PropertyInteriorHasService
     queryset = PropertyInteriorHasService.objects.all()
+
+
+
+class EditUserProfileView(LoginRequiredMixin ,UpdateView): #Note that we are using UpdateView and not FormView
+    model = User    
+    form_class = ProfileModelForm
+    template_name = "website/user_profile.html"
+    
+    # queryset  = User.objects.all()
+
+    def get_object(self, **kwargs):
+        return get_object_or_404(User, pk=self.request.form.id)
+        # return User.objects.filter(uuid=kwargs.get('uuid')).first()
+
+
+    def get_success_url(self):
+        kwargs = {'uuid': self.object.uuid}
+        return reverse('productupdate', kwargs=kwargs)   
+#     

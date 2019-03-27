@@ -1,40 +1,69 @@
 {% load static from staticfiles %}
-<div class="page-sidebar " id="main-menu">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+        <div class="profile-wrapper sm pr-img">
+                
+                    
+                        <a href="{% url 'website:index' %}"><img src="/static/webarch/img/logos-(2).png" width="100" height="65" alt=""></a>
+                    
+                
+            </div>
+            <ul class="nav metismenu" id="side-menu">
 
-    <div class="page-sidebar-wrapper scrollbar-dynamic" id="main-menu-wrapper">
-        <div class="user-info-wrapper sm">
-            <div class="profile-wrapper sm">
+                <li class="nav-header">
+           
                 {% with request.user.profile_picture as picture %}
-                    {% if picture %}
-                        <img src="{{ picture.url }}" width="69"
-                             height="69" alt=""/>
-                        <div class="availability-bubble online"></div>
-                    {% else %}
-                        <img src="{% static 'assets/img/placeholder_profile_picture.webp' %}" width="35" height="35"
-                             alt="">
-                    {% endif %}
-                {% endwith %}
-            </div>
-            <div class="user-info sm">
-                <div class="username">{{ request.user.first_name }} {{ request.user.last_name }}</div>
-                <div class="status">{{ request.user.username }}</div>
-            </div>
-        </div>
-        <p class="menu-title sm">MENÚ</p>
-        <ul>
-            {% if request.user.admin_profile %}
-                <li class="{% if request.resolver_match.url_name == "property" %}active{% endif %}">
-                    <a href="javascript:"> <i class="material-icons">home</i> <span class="title">Mis condominios</span>
-                        <span class=" arrow"></span> </a>
-                    <ul class="sub-menu">
-                        {% for property in request.user.admin_profile.my_properties %}
-                            <li><a href="{% url 'website:property' property.id %}">{{ property.name }}</a></li>
-                        {% endfor %}
+                   <div class="dropdown profile-element">
+                        {% if picture %}
+                             <span>
+                             <img alt="image" width="69"
+                                  height="69"  class="img-circle" src="{{ picture.url }}" />
+                              </span>
+                          {% else %}
+                             <span><img src="{% static 'assets/img/placeholder_profile_picture.webp' %}" 
+                               alt="">  </span>
+                            {% endif %}
+                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+                              </span> <span class="text-muted text-xs block">{{ request.user.username }} <b class="caret"></b></span> </span> </a>
+                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                             <li><a href="{% url 'website:my_profile' %}">Profile</a></li>
+                               <li><a href="#">Contacts</a></li>
+                            <li><a href="#">Mailbox</a></li>
+                            <li class="divider"></li>
+                             <li><a href="{% url 'website:logout' %}">Logout</a></li>
+                         </ul>
+                     </div>
+                     <div class="logo-element">
+                         COMOVI
+                     </div>
+                       {% endwith %}                    
+                </li>                  
+                <li class="active">
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Mis Inmuebles </span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse" style="height: 0px;">
+                        <li><a href="#">Real Cerezos   </a></li>
+                        <li class="active"><a href="#">Panuco 127    </a></li>
+                        <li><a href="#">Cerrada Bugambilias    </a></li>
+                        <li><a href="#">Torre Axus    </a></li>
+                        <li><a href="#">Consultorious Sur  <span class="label label-primary pull-right">2</span></a></li>
                     </ul>
                 </li>
-            {% elif request.user.owner_profile %}
-                <li class="{% if request.resolver_match.url_name == "property_interior" %}active{% endif %}">
-                    <a href="javascript:"> <i class="material-icons">home</i> <span
+                {% if request.user.admin_profile %}
+
+                <li class="{% if request.resolver_match.url_name == 'property' %}active{% endif %}">
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        {% for property in request.user.admin_profile.my_properties %}
+                            <li><a href="{% url 'website:property' property.id %}">{{ property.name }}</a></li>
+                        {% endfor %}  
+                    </ul>
+                </li>
+              
+               {% elif request.user.owner_profile %}
+
+                <li class="{% if request.resolver_match.url_name == 'property_interior' %}active{% endif %}">
+                <a href="javascript:"> <i class="material-icons">Home</i> <span
                             class="title">Mis departamentos</span>
                         <span class=" arrow"></span> </a>
                     <ul class="sub-menu">
@@ -45,35 +74,43 @@
                         {% endfor %}
                     </ul>
                 </li>
-                <li class="{% if request.resolver_match.url_name == "payments" %}active{% endif %}">
+                <li class="{% if request.resolver_match.url_name == 'payments' %}active{% endif %}">
                     <a href="{% url 'website:payments' %}">
                         <i class="material-icons">payments</i>
                         <span class="title">Pagos</span>
                     </a>
                 </li>
-                <li class="{% if request.resolver_match.url_name == "payment_history" %}active{% endif %}">
+                <li class="{% if request.resolver_match.url_name == 'payment_history' %}active{% endif %}">
                     <a href="{% url 'website:payment_history' %}">
                         <i class="material-icons">history</i>
                         <span class="title">Historial de pagos</span>
                     </a>
                 </li>
-            {% endif %}
-            <li class="{% if request.resolver_match.url_name == "newspaper" %}active{% endif %}">
-                <a href="{% url 'website:newspaper' %}">
-                    <i class="material-icons">new_releases</i>
-                    <span class="title">Avisos</span>
-                </a>
-            </li>
-            {% with request.resolver_match.url_name as url_name %}
-                <li class="{% if url_name == "inbox" or url_name == "inbox_sent" %}active{% endif %}">
-                    <a href="{% url 'website:inbox' %}">
-                        <i class="material-icons">email</i>
-                        <span class="title">Buzón de mensajes</span>
-                        <span class=" badge badge-disable pull-right ">{{ request.user.unread_messages }}</span>
-                    </a>
+  {% endif %}
+                <li class="{% if request.resolver_match.url_name == "newspaper" %}active{% endif %}">
+                   <a href="{% url 'website:newspaper' %}">
+                       <i class="material-icons">new_releases</i>
+                       <span class="title">Avisos</span>
+                   </a>
+               </li>
+               {% with request.resolver_match.url_name as url_name %}
+                   <li class="{% if url_name == "inbox" or url_name == "inbox_sent" %}active{% endif %}">
+                       <a href="{% url 'website:inbox' %}">
+                           <i class="material-icons">email</i>
+                           <span class="title">Buzón de mensajes</span>
+                           <span class=" badge badge-disable pull-right ">{{ request.user.unread_messages }}</span>
+                       </a>
+                   </li>
+               {% endwith %}
+
+              <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
+                        
+                    </ul>
                 </li>
-            {% endwith %}
-        </ul>
-        <div class="clearfix"></div>
-    </div>
-</div>
+            </ul>
+
+        </div>
+    </nav>

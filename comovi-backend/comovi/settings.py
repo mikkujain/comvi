@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'comovi.apps.core',
     'comovi.apps.website',
+    'crispy_forms',
     # 'djangocms_picture',    
     # 'django.contrib.sites',
 ]
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'comovi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +130,5 @@ FILE_UPLOAD_PERMISSIONS = 0o777
 AUTH_USER_MODEL = 'core.User'
 
 LOGIN_URL = '/login/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -7017,6 +7017,7 @@ body.landing-page {
   background-color: #1dc5a3;
   border-color: #1dc5a3;
 }
+
 @media (min-width: 768px) {
   .landing-page {
     /* Navbar positioning foo */

@@ -1,9 +1,10 @@
 from django import forms
 from django.core.mail import send_mail as sm
-from django.db import transaction
-
-from comovi.apps.core.models import InboxMessage, Property, User
-
+from django.db import models, transaction
+from comovi.apps.core.translations import translations
+from comovi.apps.core.models import InboxMessage, Property, User, get_path_user_profile_picture
+from django.views.generic import FormView
+from django.urls import reverse
 
 class InboxMessageForm(forms.Form):
     to = forms.CharField(required=True)
@@ -51,3 +52,49 @@ class InboxMessageForm(forms.Form):
             message.save()
 
         return cleaned_data
+
+
+class ProfileModelForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'mother_last_name',
+            'rfc',
+            'gender',
+            'birth_date',
+            'phone',
+            'cell_phone',
+            'profile_picture'
+            ]
+
+    # def save(self, user=None):
+    #     user_profile = super(ProfileModelForm, self).save(commit=False)
+    #     if user:
+    #         user_profile.user = user
+    #     user_profile.save()
+    #     return user_profile
+
+
+
+
+class NewUserProfileView(FormView):
+    template_name = "website/user_profile.html"
+    form_class = ProfileModelForm
+
+    def save(self, user=None):
+        user_profile = super(ProfileModelForm, self).save(commit=True)
+        if user:
+            user_profile.user = user
+        user_profile.save()
+        return user_profile
+
+
+    def form_valid(self, form):
+        form.save(self.request.user)
+        return super(NewUserProfileView, self).form_valid(form)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("website:my_profle")
+

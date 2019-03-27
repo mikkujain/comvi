@@ -1,0 +1,94 @@
+{% load static from staticfiles %}
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+          <ul class="nav metismenu" id="side-menu"  idd="main-menu">
+                         <li class="nav-header">
+                           <div class="dropdown profile-element">
+{% with request.user.profile_picture as picture %}
+    {% if picture %}
+                             <span>
+                                                     <img alt="image" width="69"
+                                                          height="69"  class="img-circle" src="{{ picture.url }}" />
+                                                      </span>
+                                                  {% else %}
+                                                     <span><img src="{% static 'assets/img/placeholder_profile_picture.webp' %}" width="35" height="35"
+                                                       alt="">  </span>
+                                                    {% endif %}
+                                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+                                                      </span> <span class="text-muted text-xs block">{{ request.user.username }} <b class="caret"></b></span> </span> </a>
+                                                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                                     <li><a href="profile.html">Profile</a></li>
+                                                     <li class="divider"></li>
+                                                     <li><a href="login.html">Logout</a></li>
+                                                 </ul>
+                                             </div>
+                                             <div class="logo-element">
+                                                 IN+
+                                             </div>
+                                               {% endwith %}
+                           </li>
+                           {% if request.user.admin_profile %}
+                               <li class="{% if request.resolver_match.url_name == "property" %}active{% endif %}">
+                                   <a href="javascript:"> <i class="material-icons">home</i> <span class="title">Mis condominios</span>
+                                       <span class=" arrow"></span> </a>
+                                   <ul class="sub-menu">
+                                       {% for property in request.user.admin_profile.my_properties %}
+                                           <li><a href="{% url 'website:property' property.id %}">{{ property.name }}</a></li>
+                                       {% endfor %}
+                                   </ul>
+                               </li>
+                           {% elif request.user.owner_profile %}
+                               <li class="{% if request.resolver_match.url_name == "property_interior" %}active{% endif %}">
+                                   <a href="javascript:"> <i class="material-icons">home</i> <span
+                                           class="title">Mis departamentos</span>
+                                       <span class=" arrow"></span> </a>
+                                   <ul class="sub-menu">
+                                       {% for property_interior in request.user.owner_profile.property_interiors_owned.all %}
+                                           <li>
+                                               <a href="{% url 'website:property_interior' property_interior.id %}">{{ property_interior }}</a>
+                                           </li>
+                                       {% endfor %}
+                                   </ul>
+                               </li>
+                               <li class="{% if request.resolver_match.url_name == "payments" %}active{% endif %}">
+                                   <a href="{% url 'website:payments' %}">
+                                       <i class="material-icons">payments</i>
+                                       <span class="title">Pagos</span>
+                                   </a>
+                               </li>
+                               <li class="{% if request.resolver_match.url_name == "payment_history" %}active{% endif %}">
+                                   <a href="{% url 'website:payment_history' %}">
+                                       <i class="material-icons">history</i>
+                                       <span class="title">Historial de pagos</span>
+                                   </a>
+                               </li>
+                           {% endif %}
+                           <li class="{% if request.resolver_match.url_name == "newspaper" %}active{% endif %}">
+                               <a href="{% url 'website:newspaper' %}">
+                                   <i class="material-icons">new_releases</i>
+                                   <span class="title">Avisos</span>
+                               </a>
+                           </li>
+                           {% with request.resolver_match.url_name as url_name %}
+                               <li class="{% if url_name == "inbox" or url_name == "inbox_sent" %}active{% endif %}">
+                                   <a href="{% url 'website:inbox' %}">
+                                       <i class="material-icons">email</i>
+                                       <span class="title">Buzón de mensajes</span>
+                                       <span class=" badge badge-disable pull-right ">{{ request.user.unread_messages }}</span>
+                                   </a>
+                               </li>
+                           {% endwith %}
+                          </ul>
+          </div>
+        </nav>
+
+
+
+
+
+
+
+
+

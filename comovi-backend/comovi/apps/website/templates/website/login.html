@@ -16,6 +16,14 @@
     <link href="{% static 'assets/plugins/bootstrapv3/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'webarch/css/webarch.css' %}" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+   
+.column-seperation > div[class*="col-"] {
+    border-right: 0px solid #ddd;
+}
+
+
+    </style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -24,7 +32,7 @@
     <div class="row login-container column-seperation">
         <div class="col-md-5 col-md-offset-1">
             {% if site_logo %}
-                <img src="{{ site_logo.url }}" class="center-block" width="326" height="190" alt="">
+                <img src="{% static 'webarch/img/logos.png' %}" class="center-block" width="326" height="190" alt="">
             {% else %}
                 <p>Para agregar logo, edita las configuraciones <a href="{% url 'admin:core_sitepreferences_changelist' %}">aquí</a></p>
             {% endif %}
