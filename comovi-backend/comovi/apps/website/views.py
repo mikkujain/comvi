@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render
+from django.utils import translation
 
 # Create your views here.
 from django.db.models import Q
@@ -43,6 +44,8 @@ class LoginView(TemplateView):
                 error = translations['inactive_user']
         else:
             user_exist = User.objects.filter(username=username).count() > 0
+            language = translation.get_language_from_request(request)
+            print(language)
             error = translations['incorrect_password'] if user_exist else translations['user_does_not_exist']
         return TemplateResponse(template=self.template_name, request=request, context={'error': error})
 
@@ -229,11 +232,12 @@ class PayView(LoginRequiredMixin, DetailView):
     queryset = PropertyInteriorHasService.objects.all()
 
 
+from django.utils.translation import gettext as _
 
 class EditUserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView): 
     template_name = "website/my_profile.html"
     form_class = ProfileModelForm
-    success_message = "Profile Successfully Updated"
+    success_message = _("Profile Successfully Updated")
     
     def get_object(self, queryset=None):
         return self.request.user

@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-30 16:27+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: comovi/apps/website/templates/website/dashboard_2.html:26
+msgid "Mensual"
+msgstr "Monthly"
+
+#: comovi/apps/website/templates/website/dashboard_2.html:27
+msgid "Pagos del periodo"
+msgstr "Payments of the period"
+
+#: comovi/apps/website/templates/website/dashboard_2.html:32
+msgid "Ingresos totales"
+msgstr "Total revenue"
+
+#: comovi/apps/website/templates/website/dashboard_2.html:53
+msgid "Extraordinarias"
+msgstr "Extraordinary"
+
+#: comovi/apps/website/templates/website/dashboard_2.html:58
+msgid "Nuevas visitas"
+msgstr "New visits"
+
+#: comovi/apps/website/templates/website/login.html:40
+msgid "Para agregar logo, edita las configuraciones "
+msgstr "To add logo, edit the settings "
+
+#: comovi/apps/website/templates/website/login.html:40
+msgid "aquí"
+msgstr "here"
+
+#: comovi/apps/website/templates/website/login.html:57
+msgid "Usuario"
+msgstr "User"
+
+#: comovi/apps/website/templates/website/login.html:63
+msgid "Contraseña"
+msgstr "Password"
+
+#: comovi/apps/website/templates/website/login.html:70
+msgid "Tengo problemas de acceso"
+msgstr "I have access problems"
+
+#: comovi/apps/website/templates/website/login.html:76
+msgid "Entrar"
+msgstr "Get in"
+
+#: comovi/apps/website/templates/website/my_profile.html:101
+#, python-format
+msgid "%(m)s"
+msgstr ""
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:15
+msgid "Mis Inmuebles"
+msgstr "My Properties"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:17
+msgid "Real Cerezos"
+msgstr "Real Cherry"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:18
+msgid "Panuco 127"
+msgstr ""
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:19
+msgid "Cerrada Bugambilias"
+msgstr "Closed Bugambilias"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:20
+msgid "Torre Axus"
+msgstr "Axus Tower"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:21
+msgid "Consultorious Sur"
+msgstr "Consultorious South"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:65
+msgid "Avisos"
+msgstr "Notices"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:72
+msgid "Buzón de mensajes"
+msgstr "Inbox"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:79
+msgid "Reportes"
+msgstr "Reports"
+
+#: comovi/apps/website/templates/website/partial_left_sidebar.html:81
+msgid "Rickshaw Charts"
+msgstr "Rickshaw Charts"
+
+#: comovi/apps/website/views.py:240
+msgid "Profile Successfully Updated"
+msgstr "Perfil actualizado correctamente"
+
+#: comovi/settings.py:123
+msgid "Spanish"
+msgstr ""
+
+#: comovi/settings.py:124
+msgid "English"
+msgstr ""

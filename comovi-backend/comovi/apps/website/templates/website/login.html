@@ -1,11 +1,14 @@
 {% load static from staticfiles %}
+{% load i18n %}
 {% load preference_tags %}
 
 {% preferences site_name as site_name %}
 {% preferences site_logo as site_logo %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <meta charset="utf-8"/>
@@ -34,7 +37,7 @@
             {% if site_logo %}
                 <img src="{% static 'webarch/img/logos.png' %}" class="center-block" width="326" height="190" alt="">
             {% else %}
-                <p>Para agregar logo, edita las configuraciones <a href="{% url 'admin:core_sitepreferences_changelist' %}">aquí</a></p>
+                <p>{% trans "Para agregar logo, edita las configuraciones " %}<a href="{% url 'admin:core_sitepreferences_changelist' %}">{% trans "aquí" %}</a></p>
             {% endif %}
         </div>
         <div class="col-md-5">
@@ -51,26 +54,26 @@
                 {% endif %}
                 <div class="row">
                     <div class="form-group col-md-10">
-                        <label class="form-label" for="username">Usuario</label>
+                        <label class="form-label" for="username">{% trans "Usuario" %}</label>
                         <input class="form-control" id="username" name="username" type="text" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-10">
-                        <label class="form-label" for="password">Contraseña</label> <span class="help"></span>
+                        <label class="form-label" for="password">{% trans "Contraseña" %}</label> <span class="help"></span>
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="control-group col-md-10">
                         <div class="checkbox checkbox check-success">
-                            <a href="#">Tengo problemas de acceso</a>&nbsp;&nbsp;
+                            <a href="#">{% trans "Tengo problemas de acceso" %}</a>&nbsp;&nbsp;
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-10">
-                        <button class="btn btn-primary btn-cons pull-right" type="submit">Entrar</button>
+                        <button class="btn btn-primary btn-cons pull-right" type="submit">{% trans "Entrar" %}</button>
                     </div>
                 </div>
             </form>

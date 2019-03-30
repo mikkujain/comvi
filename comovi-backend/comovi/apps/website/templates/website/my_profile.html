@@ -1,4 +1,5 @@
 {% extends 'website/master.html' %}
+{% load i18n %}
 {% block title %}
 My Profile
 {% endblock %}
@@ -97,17 +98,17 @@ $(document).ready(function () {
                     <script type="text/javascript">
                         $(function () {
                             $('#toast-container').show();
-                            $(".toast-message").html('{{ m }}');
+                            $(".toast-message").html('{% blocktrans %}{{ m }}{% endblocktrans %}');
 
- $('.toast-close-button').click(()=>{
+                            $('.toast-close-button').click(()=>{
 
- $('#toast-container').hide();
- });
- setTimeout(()=>{
+                            $('#toast-container').hide();
+                            });
+                            setTimeout(()=>{
 
- $('#toast-container').hide();
+                            $('#toast-container').hide();
 
- },3000);
+                            },3000);
 
                             });
                     </script>

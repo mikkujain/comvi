@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static from staticfiles %}
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -11,13 +12,13 @@
             <ul class="nav metismenu" id="side-menu">
                   
                 <li class="active">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Mis Inmuebles </span> <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">{% trans "Mis Inmuebles" %} </span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse" style="height: 0px;">
-                        <li><a href="{% url 'website:page' %}">Real Cerezos   </a></li>
-                        <li class="active"><a href="#">Panuco 127    </a></li>
-                        <li><a href="#">Cerrada Bugambilias    </a></li>
-                        <li><a href="#">Torre Axus    </a></li>
-                        <li><a href="#">Consultorious Sur  <span class="label label-primary pull-right">2</span></a></li>
+                        <li><a href="{% url 'website:page' %}">{% trans "Real Cerezos" %}   </a></li>
+                        <li class="active"><a href="#">{% trans "Panuco 127" %}    </a></li>
+                        <li><a href="#">{% trans "Cerrada Bugambilias" %}    </a></li>
+                        <li><a href="#">{% trans "Torre Axus" %}    </a></li>
+                        <li><a href="#">{% trans "Consultorious Sur" %}  <span class="label label-primary pull-right">2</span></a></li>
                     </ul>
                 </li>
                 {% if request.user.admin_profile %}
@@ -61,23 +62,23 @@
                 <li class="{% if request.resolver_match.url_name == "newspaper" %}active{% endif %}">
                    <a href="{% url 'website:newspaper' %}">
                        <i class="material-icons">new_releases</i>
-                       <span class="title">Avisos</span>
+                       <span class="title">{% trans "Avisos" %}</span>
                    </a>
                </li>
                {% with request.resolver_match.url_name as url_name %}
                    <li class="{% if url_name == "inbox" or url_name == "inbox_sent" %}active{% endif %}">
                        <a href="{% url 'website:inbox' %}">
                            <i class="material-icons">email</i>
-                           <span class="title">Buzón de mensajes</span>
+                           <span class="title">{% trans "Buzón de mensajes" %}</span>
                            <span class=" badge badge-disable pull-right ">{{ request.user.unread_messages }}</span>
                        </a>
                    </li>
                {% endwith %}
 
               <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">{% trans "Reportes" %}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
+                        <li><a href="graph_rickshaw.html">{% trans "Rickshaw Charts" %}</a></li>
                         
                     </ul>
                 </li>

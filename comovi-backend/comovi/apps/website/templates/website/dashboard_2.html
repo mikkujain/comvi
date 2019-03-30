@@ -1,17 +1,12 @@
 {% extends 'website/master.html' %}
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-{% block title %}
-    Dashboard
-{% endblock %}
-
+{% block title %}Dashboard{% endblock %}
 </head>
 
 <body>
@@ -28,52 +23,52 @@
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-success pull-right">Monthly</span>
-                                <h5>Pagos del periodo</h5>
+                                <span class="label label-success pull-right">{% trans "Mensual" %}</span>
+                                <h5>{% trans "Pagos del periodo" %}</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">40 886,200</h1>
                                 <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                                <small>Total income</small>
+                                <small>{% trans "Ingresos totales" %}</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-info pull-right">Annual</span>
+                                <span class="label label-info pull-right">Anual</span>
                                 <h5>Pendientes de pago  </h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">275,800</h1>
                                 <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                                <small>New orders</small>
+                                <small>Nuevos pedidos</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-primary pull-right">Today</span>
-                                <h5>Extraordinarias </h5>
+                                <span class="label label-primary pull-right">{% trans Hoy %}</span>
+                                <h5>{% trans "Extraordinarias" %}</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">106,120</h1>
                                 <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                <small>New visits</small>
+                                <small>{% trans "Nuevas visitas" %}</small>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <span class="label label-danger pull-right">Low value</span>
+                                <span class="label label-danger pull-right">Bajo valor</span>
                                 <h5>Condominos sin Pago</h5>
                             </div>
                             <div class="ibox-content">
                                 <h1 class="no-margins">80,600</h1>
                                 <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                                <small>In first month</small>
+                                <small>En el primer mes</small>
                             </div>
                         </div>
             </div>
@@ -82,12 +77,12 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Orders</h5>
+                                <h5>Pedidos</h5>
                                 <div class="pull-right">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                        <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                        <button type="button" class="btn btn-xs btn-white">Annual</button>
+                                        <button type="button" class="btn btn-xs btn-white active">Hoy</button>
+                                        <button type="button" class="btn btn-xs btn-white">Mensual</button>
+                                        <button type="button" class="btn btn-xs btn-white">Anual</button>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +97,7 @@
                                     <ul class="stat-list">
                                         <li>
                                             <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
+                                            <small>Total de pedidos en periodo</small>
                                             <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
                                             <div class="progress progress-mini">
                                                 <div style="width: 48%;" class="progress-bar"></div>
@@ -110,7 +105,7 @@
                                         </li>
                                         <li>
                                             <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
+                                            <small>Pedidos en el último mes</small>
                                             <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
                                             <div class="progress progress-mini">
                                                 <div style="width: 60%;" class="progress-bar"></div>
@@ -118,7 +113,7 @@
                                         </li>
                                         <li>
                                             <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
+                                            <small>Ingresos mensuales de pedidos</small>
                                             <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
                                             <div class="progress progress-mini">
                                                 <div style="width: 22%;" class="progress-bar"></div>
@@ -138,7 +133,7 @@
                     <div class="col-lg-4">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Messages</h5>
+                                <h5>Mensajes</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -149,8 +144,8 @@
                                 </div>
                             </div>
                             <div class="ibox-content ibox-heading">
-                                <h3><i class="fa fa-envelope-o"></i> New messages</h3>
-                                <small><i class="fa fa-tim"></i> You have 22 new messages and 16 waiting in draft folder.</small>
+                                <h3><i class="fa fa-envelope-o"></i> Nuevos mensajes</h3>
+                                <small><i class="fa fa-tim"></i> Tienes 22 mensajes nuevos y 16 esperando en la carpeta borrador..</small>
                             </div>
                             <div class="ibox-content">
                                 <div class="feed-activity-list">
