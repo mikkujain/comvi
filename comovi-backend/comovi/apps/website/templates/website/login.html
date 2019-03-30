@@ -31,6 +31,20 @@
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="error-body no-top">
+
+<form action="" method="post">{% csrf_token %}
+<select name="language" id="">
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+    {% for l in LANGUAGES %}
+        <option value="{{ l.code }}" {% if l.code == LANGUAGE_CODE %} selected {% endif %}>
+            {{ l.name_local }} ({{ l.code }})
+        </option>
+    {% endfor %}
+</select>
+    
+</form>
+
 <div class="container">
     <div class="row login-container column-seperation">
         <div class="col-md-5 col-md-offset-1">
