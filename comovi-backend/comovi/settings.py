@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import gettext
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -116,8 +117,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# LANGUAGE = (
+#     #  Cutomize lines
+#     ('en', gettext('English')),
+#     ('es', gettext('Spanish')),
+#     )
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+
+CMS_LANGUAGE = {
+    'default': {
+    'public':True,
+    'hide_untranslated':False,
+    'redirect_on_fallback':True,
+    },
+    1: [
+        {
+            'public': True,
+        }
+    ]
+}
 
 MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), '../media/').replace('\\', '/'))
 MEDIA_URL = '/media/'

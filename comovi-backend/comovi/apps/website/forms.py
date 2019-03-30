@@ -57,7 +57,7 @@ class InboxMessageForm(forms.Form):
 class ProfileModelForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = [
+        fields = (
             'first_name',
             'last_name',
             'mother_last_name',
@@ -67,34 +67,10 @@ class ProfileModelForm(forms.ModelForm):
             'phone',
             'cell_phone',
             'profile_picture'
-            ]
-
-    # def save(self, user=None):
-    #     user_profile = super(ProfileModelForm, self).save(commit=False)
-    #     if user:
-    #         user_profile.user = user
-    #     user_profile.save()
-    #     return user_profile
+            )
 
 
 
 
-class NewUserProfileView(FormView):
-    template_name = "website/user_profile.html"
-    form_class = ProfileModelForm
 
-    def save(self, user=None):
-        user_profile = super(ProfileModelForm, self).save(commit=True)
-        if user:
-            user_profile.user = user
-        user_profile.save()
-        return user_profile
-
-
-    def form_valid(self, form):
-        form.save(self.request.user)
-        return super(NewUserProfileView, self).form_valid(form)
-
-    def get_success_url(self, *args, **kwargs):
-        return reverse("website:my_profle")
 

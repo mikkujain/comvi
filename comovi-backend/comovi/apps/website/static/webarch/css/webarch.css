@@ -12343,6 +12343,8 @@ body.rtl .footer-widget {
 .material-icons {
     font-size: 13px;
 }
+
+/*myprofile form style*/
 form.form-cusmtomize.form-inline .form-group {
     width: 49%;
 }
@@ -12350,7 +12352,7 @@ form.form-cusmtomize.form-inline .form-group input, form.form-cusmtomize.form-in
     width: 99%;
 }
 .nav-header {
-    padding: 30px 20px;
+    padding: 20px 20px;
     background: url(patterns/header-profile.png) no-repeat;
 }
 i.fa.fa-language.label-primary {
@@ -12371,4 +12373,186 @@ i.fa.fa-language.label-primary {
 }
 i.fa strong {
     font-family: 'Roboto', serif;
+}
+form.form-inline.custom-form .form-group input, form.form-inline.custom-form .form-group select {
+    width: 100%;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
+}
+form.form-inline.custom-form .form-group {
+    margin-bottom: 0;
+    vertical-align: middle;
+    width: 50%;
+    display: inline-block;
+    float: none;
+    padding: 0 15px;
+    margin: 0 -3px 0 0;
+}
+form.form-inline.custom-form {
+    margin: 0 -15px;
+}
+.feed-activity-list {
+    padding: 0 15px;
+}  
+.ibox-content.pd-0 {
+    padding: 15px 0px;
+} 
+input#profile_picture-clear_id {
+    display: inline;
+    width: auto;
+    margin: 0 7px;
+    vertical-align: middle;
+    position: relative;
+    top: 4px;
+}
+.ibox-content.no-padding.border-left-right {
+    padding-left: 15px !important;
+    padding-top: 15px !important;
+}
+label[for=profile_picture-clear_id] {
+    display: inline;
+    position: relative;
+    top: 3px;
+}
+form.form-inline.custom-form .form-group#div_id_profile_picture {
+    display: block;
+    width: 100%;
+}
+span.asteriskField {
+    margin: 0 2px;
+}
+label[for=id_profile_picture]+div>a {
+    display: none;
+}
+.outer {
+    display: none;
+}
+
+@media (max-width: 600px){
+    form.form-inline.custom-form .form-group {
+    width: 100%;
+    display: block;
+    margin: 0 0px 0 0;
+}
+.navbar-top-links li a {
+    padding: 20px 5px;
+    min-height: 50px;
+}
+.navbar-top-links li a {
+    padding: 20px 0px;
+    min-height: 50px;
+}
+.nav.navbar-top-links a {
+    font-size: 12px;
+}
+.body-small .navbar-top-links li:last-child {
+    margin-right: 5px;
+}
+.nav.navbar-top-links li.dropdown {
+    display: inline-block;
+}
+}
+
+/*inbox.html style*/
+    .btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+/*real-cerezos style*/
+   .ibox-content .small {
+    width: auto!important;
+}
+
+.float-e-margins .btn {
+    margin-bottom: 0px;
+}
+.form-group.custom-design .input-group.date {
+    width: 100%;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
+}
+.form-group.custom-design .input-group.date input.form-control {
+    margin: 0px !important;
+}
+/*.form-group.custom-design {
+    margin-top: 17px !important;
+}*/
+.form-group.custom-design .input-group.date .input-group-addon {
+    border: solid 1px #E5E9EC;
+}
+.custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin-bottom: 0;
+}
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin: 0;
+    opacity: 0;
+}
+.custom-file-label {
+    padding: .5rem .75rem;
+}
+
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+.custom-file-label::after {
+    padding: .5rem .75rem;
+}
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(calc(2.25rem + 2px) - 1px * 2);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    content: "Browse";
+    background-color: #e9ecef;
+    border-left: 1px solid #ced4da;
+    border-radius: 0 .25rem .25rem 0;
+}
+.form-group.text-right.custom-btn input {
+    width: auto !important;
+}
+body {
+    background-color: #1b1e24;
+}
+
+@media (max-width: 767px){
+ul.nav.navbar-top-links.navbar-right {
+    text-align: right;
+}
+.navbar-top-links .dropdown-messages {
+    width: 300px;
+    min-width: 0;
+    right: -97px;
+    left: auto;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -211px;
+}
 }

@@ -7,7 +7,8 @@ from django.db import models, transaction
 from comovi.apps.core.translations import translations
 # Create your models here.
 from django.utils.timezone import now
-
+from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 def get_path_user_profile_picture(instance, filename):
     print(instance)
@@ -114,6 +115,9 @@ class User(AbstractUser, BaseModel):
 
     def unread_messages(self):
         return InboxMessage.objects.filter(to__id__in=[self.id], is_seen=False).count()
+
+    def get_absolute_url(self):
+        return reverse("website:my_profile")
 
 
 class Property(BaseModel):

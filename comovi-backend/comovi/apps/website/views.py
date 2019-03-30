@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 from django.db.models import Q
@@ -10,14 +11,16 @@ from django.views import View
 from django.views.generic import TemplateView, DetailView, ListView, CreateView, FormView
 
 from comovi.apps.core.models import User, Property, PropertyInterior, InboxMessage, PropertyInteriorHasService, Payment, \
-    Post
+    Post, BaseModel
 from comovi.apps.website.dashboard import Dashboard
 from comovi.apps.website.forms import InboxMessageForm
 from .translations import translations
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.views.generic import UpdateView
 from .forms import ProfileModelForm
-
+import uuid
+import datetime
 
 # noinspection PyMethodMayBeStatic
 class LoginView(TemplateView):
@@ -48,9 +51,11 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'website/dashboard_2.html' # changes index to dashboard.html
 
 
-class MyProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'website/my_profile.html'
+class PageView(LoginRequiredMixin, TemplateView):
+    template_name = 'website/real-cerezos.html'
     
+class DetailMsgView(LoginRequiredMixin, TemplateView):
+    template_name = 'website/inbox_detail.html'
 
 
 class InboxView(LoginRequiredMixin, ListView):
@@ -225,19 +230,15 @@ class PayView(LoginRequiredMixin, DetailView):
 
 
 
-class EditUserProfileView(LoginRequiredMixin ,UpdateView): #Note that we are using UpdateView and not FormView
-    model = User    
+class EditUserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView): 
+    template_name = "website/my_profile.html"
     form_class = ProfileModelForm
-    template_name = "website/user_profile.html"
+    success_message = "Profile Successfully Updated"
     
-    # queryset  = User.objects.all()
-
-    def get_object(self, **kwargs):
-        return get_object_or_404(User, pk=self.request.form.id)
-        # return User.objects.filter(uuid=kwargs.get('uuid')).first()
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
-    def get_success_url(self):
-        kwargs = {'uuid': self.object.uuid}
-        return reverse('productupdate', kwargs=kwargs)   
-#     
+
+
+
