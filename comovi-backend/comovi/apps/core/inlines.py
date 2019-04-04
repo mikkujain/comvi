@@ -1,7 +1,7 @@
 from django.contrib.admin import StackedInline, TabularInline
 
 from comovi.apps.core.models import AddressProperty, ContactProperty, PropertyInterior, PropertyInteriorHasService, \
-    PropertyPreferences, Payment, AdminProfile, OwnerProfile, PostAttachment
+    PropertyPreferences, Payment, AdminProfile, OwnerProfile, PostAttachment 
 
 
 class AddressInline(StackedInline):
@@ -61,3 +61,5 @@ class OwnerProfileInline(StackedInline):
 class PostAttachmentInline(StackedInline):
     model = PostAttachment
     extra = 0
+
+

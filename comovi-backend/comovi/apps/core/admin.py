@@ -109,3 +109,4 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(PostAttachment)
 class PostAttachmentAdmin(admin.ModelAdmin):
     pass
+

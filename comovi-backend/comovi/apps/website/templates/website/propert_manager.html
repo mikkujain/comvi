@@ -1,109 +1,26 @@
 {% extends 'website/master.html' %}
+{% load static from staticfiles %}
 {% load i18n %}
-{% block title %}
-My Profile
-{% endblock %}
-{% load staticfiles %}
 {% load crispy_forms_tags %}
- 
 {% block content %}
-   <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
-    <div class="toast toast-success" style="">
-        <button type="button" class="toast-close-button" role="button">×</button><div class="toast-message"></div></div></div>
- 
-    <style type="text/css">
-       #toast-container{
-        display: none;
-       } 
-       .invalid-feedback >  strong {
-        color: red;
-       }
-
-    </style>
-<script type="text/javascript">
-$(document).ready(function () {
-  //called when key is pressed in textbox
-  $("#id_phone,#id_cell_phone").keypress(function (e) {
-     //if the letter is not digit then display error and don't type anything
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-        //display error message
-        $("#errmsg").html("Digits Only").show().fadeOut("slow");
-               return false;
-    }
-   });
-});
-</script>
-
-
-<script type="text/javascript">
-  // $(function() {
-  //   $( ".datepicker" ).datepicker({
-  //     changeMonth: true,
-  //     changeYear: true,
-  //     yearRange: "1900:2012",
-  //     setDate, new Date('{{ form.birth_date.value|date:"Y,m,d" }}')
-  //     // You can put more options here.
-
-  //   });
-  // });
-</script>
-
-       
-<!-- <script type="text/javascript">
-    $(document).ready(function() {
-
-        $(function() {
-            $('#birthdate').datetimepicker({maxDateNow: true, format:'DD/MM/YYYY'});
-        });
-    });
-</script> -->
-        
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2>{% trans 'Perfil' %}</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="{% url 'website:index' %}">{% trans 'Casa' %}</a>
-            </li>
-            <li class="active">
-                <strong>{% trans 'Perfil' %}</strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-</div>
-
-
+<style type="text/css">
+  .invalid-feedback > strong {
+    color: red;
+  }
+</style>
 
 <div class="wrapper wrapper-content">
             {% if messages %}
                 {% for m in messages %}
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#toast-container').show();
-                            $(".toast-message").html('{% blocktrans %}{{ m }}{% endblocktrans %}');
-
-                            $('.toast-close-button').click(()=>{
-
-                            $('#toast-container').hide();
-                            });
-                            setTimeout(()=>{
-
-                            $('#toast-container').hide();
-
-                            },3000);
-
-                            });
-                    </script>
+                    
+                    {{ m }}
                 {% endfor %}
             {% endif %}
             <div class="row animated fadeInRight">
                 
                 <div class="col-md-4">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title"><h5>{% trans "Profile Detail" %}</h5></div>
+                        <div class="ibox-title"><h5>Property Manager </h5></div>
                         <div>
                             {% with request.user.profile_picture as picture %}
 
@@ -177,8 +94,10 @@ $(document).ready(function () {
                                      <div class="form-group1 text-center custom-btn"> 
 <br>
                                         <input type=submit value="{% trans 'Enviar' %}" id="showtoast" class="btn btn-primary btn-xs " /></div>
-                                    </div>                                      
-
+                                    </div><br/>
+                                    <div class="form-group1 text-center custom-btn">
+                                    <button class="btn btn-primary">Resend Current Password </button>
+                                    </div>
                                     </form>
                                    
                                 </div>
@@ -201,12 +120,5 @@ ul.nav.navbar-top-links.navbar-right {
 }
 }
    </style>
-    <!-- Mainly scripts -->
-    
-
-
-
-
 
 {% endblock %}
- 

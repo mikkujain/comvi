@@ -87,8 +87,12 @@ DATABASES = {
     }
 }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
+
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -127,7 +131,6 @@ LANGUAGES = (
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 

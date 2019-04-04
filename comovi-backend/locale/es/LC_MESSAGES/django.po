@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-03 22:51+0530\n"
+"POT-Creation-Date: 2019-04-03 22:50+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,136 +20,132 @@ msgstr ""
 
 #: .\comovi\apps\website\forms.py:69 .\comovi\apps\website\forms.py:135
 msgid "Nombre de pila"
-msgstr "First Name"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:70
 msgid "Apellido"
-msgstr "Last Name"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:71
 msgid "Apellido de la madre"
-msgstr "Mother Last Name"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:72
 msgid "Género"
-msgstr "Gender"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:73
 msgid "Fecha de nacimiento"
-msgstr "Birth Date"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:74 .\comovi\apps\website\forms.py:136
 msgid "Teléfonoo"
-msgstr "Phone"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:75
 msgid "Teléfono móvil"
-msgstr "Cell Phone"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:76 .\comovi\apps\website\forms.py:137
 msgid "Foto de perfil"
-msgstr "Profile Picture"
+msgstr ""
 
 #: .\comovi\apps\website\forms.py:133
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: .\comovi\apps\website\forms.py:134
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmar contraseña"
 
 #: .\comovi\apps\website\forms.py:151
 msgid "password did not match"
-msgstr ""
+msgstr "la contraseña no coincidió"
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:26
 msgid "Mensual"
-msgstr "Monthly"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:27
 msgid "Pagos del periodo"
-msgstr "Payments of the period"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:32
 msgid "Ingresos totales"
-msgstr "Total revenue"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:40
 msgid "Pendientes de pago"
-msgstr "Still to be paid"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:45
 msgid "Nuevos pedidos"
-msgstr "New orders"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:53
 msgid "Extraordinarias"
-msgstr "Extraordinary"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:58
 msgid "Nuevas visitas"
-msgstr "New visits"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:65
 msgid "Bajo valor"
-msgstr "Low value"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:66
 msgid "Condominos sin Pago"
-msgstr "Unpaid Condominiums"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:71
 msgid "En el primer mes"
-msgstr "In the first month"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:136
-#, fuzzy
-#| msgid "Mensual"
 msgid "Mensajes"
-msgstr "Monthly"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:147
-#, fuzzy
-#| msgid "Buzón de mensajes"
 msgid "Nuevos mensajes"
-msgstr "New messages"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\dashboard_2.html:148
 msgid "Tienes 22 mensajes nuevos y 16 esperando en la carpeta borrador.."
-msgstr "You have 22 new messages and 16 waiting in the draft folder .."
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:41
 msgid "Para agregar logo, edita las configuraciones "
-msgstr "To add logo, edit the settings "
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:41
 msgid "aquí"
-msgstr "here"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:73
 msgid "Usuario"
-msgstr "User"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:79
 msgid "Contraseña"
-msgstr "Password"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:86
 msgid "Tengo problemas de acceso"
-msgstr "I have access problems"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\login.html:92
 msgid "Entrar"
-msgstr "Get in"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\my_profile.html:63
 #: .\comovi\apps\website\templates\website\my_profile.html:69
 msgid "Perfil"
-msgstr "Profile"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\my_profile.html:66
 msgid "Casa"
-msgstr "Home"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\my_profile.html:86
 #, python-format
@@ -158,25 +154,25 @@ msgstr ""
 
 #: .\comovi\apps\website\templates\website\my_profile.html:106
 msgid "Profile Detail"
-msgstr ""
+msgstr "Detalle del perfil"
 
 #: .\comovi\apps\website\templates\website\my_profile.html:170
 #: .\comovi\apps\website\templates\website\propert_manager.html:87
 msgid "Elija el archivo"
-msgstr "Choose file"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\my_profile.html:179
 #: .\comovi\apps\website\templates\website\propert_manager.html:96
 msgid "Enviar"
-msgstr "Submit"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:15
 msgid "Mis Inmuebles"
-msgstr "My Properties"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:17
 msgid "Real Cerezos"
-msgstr "Real Cherry"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:18
 msgid "Panuco 127"
@@ -184,39 +180,39 @@ msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:19
 msgid "Cerrada Bugambilias"
-msgstr "Closed Bugambilias"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:20
 msgid "Torre Axus"
-msgstr "Axus Tower"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:21
 msgid "Consultorious Sur"
-msgstr "Consultorious South"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:66
 msgid "Avisos"
-msgstr "Notices"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:73
 msgid "Buzón de mensajes"
-msgstr "Inbox"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:80
 msgid "Reportes"
-msgstr "Reports"
+msgstr ""
 
 #: .\comovi\apps\website\templates\website\partial_left_sidebar.html:82
 msgid "Rickshaw Charts"
-msgstr "Rickshaw Charts"
+msgstr ""
 
 #: .\comovi\apps\website\views.py:52
 msgid "Incorrect Password"
-msgstr ""
+msgstr "Contraseña incorrecta"
 
 #: .\comovi\apps\website\views.py:229 .\comovi\apps\website\views.py:245
 msgid "Profile Successfully Updated"
-msgstr "Perfil actualizado correctamente"
+msgstr ""
 
 #: .\comovi\settings.py:127
 msgid "Spanish"
@@ -226,20 +222,5 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#~ msgid "la contraseña no coincidió"
-#~ msgstr "password did not match"
-
-#~ msgid "Pedidos"
-#~ msgstr "Requests"
-
-#~ msgid "Anual"
-#~ msgstr "Annual"
-
-#~ msgid "Total de pedidos en periodo"
-#~ msgstr "Total orders in period"
-
-#~ msgid "Pedidos en el último mes"
-#~ msgstr "Orders in the last month"
-
-#~ msgid "Ingresos mensuales de pedidos"
-#~ msgstr "Monthly revenue of orders"
+#~ msgid "Profile Picture"
+#~ msgstr "Foto de perfil"

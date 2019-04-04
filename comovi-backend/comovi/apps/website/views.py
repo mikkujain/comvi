@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, render
 from django.utils import translation
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 from django.db.models import Q
@@ -19,9 +20,12 @@ from .translations import translations
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.views.generic import UpdateView
-from .forms import ProfileModelForm
+from .forms import *
 import uuid
 import datetime
+from datetime import date , datetime
+from django.utils.translation import gettext as _
+now = datetime.now()
 
 # noinspection PyMethodMayBeStatic
 class LoginView(TemplateView):
@@ -45,8 +49,7 @@ class LoginView(TemplateView):
         else:
             user_exist = User.objects.filter(username=username).count() > 0
             language = translation.get_language_from_request(request)
-            print(language)
-            error = translations['incorrect_password'] if user_exist else translations['user_does_not_exist']
+            error = _('Incorrect Password') if user_exist else translations['user_does_not_exist']
         return TemplateResponse(template=self.template_name, request=request, context={'error': error})
 
 
@@ -217,10 +220,13 @@ class PropertyView(LoginRequiredMixin, DetailView):
         return super(PropertyView, self).get_context_data(**kwargs)
 
 
-class PropertyInteriorView(LoginRequiredMixin, DetailView):
+class PropertyInteriorView(LoginRequiredMixin, SuccessMessageMixin, DetailView):
     template_name = 'website/property_interior.html'
-    queryset = PropertyInterior.objects.all()
-    model = PropertyInterior
+    # queryset = PropertyInterior.objects.all()
+    # model = PropertyInterior
+    # form_class = PropertyMangerForm
+    # queryset = PropertyManager.objects.all()
+    success_message = _("Profile Successfully Updated")
 
     def get_context_data(self, **kwargs):
         return super(PropertyInteriorView, self).get_context_data(**kwargs)
@@ -232,7 +238,6 @@ class PayView(LoginRequiredMixin, DetailView):
     queryset = PropertyInteriorHasService.objects.all()
 
 
-from django.utils.translation import gettext as _
 
 class EditUserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView): 
     template_name = "website/my_profile.html"
@@ -242,7 +247,44 @@ class EditUserProfileView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
+    def get_context_data(self, **kwargs):
+    # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['date'] = now.strftime("%m/%d/%Y")
+        return context
 
 
+def LanguageSelect(request):
+    if request.method == "POST":
+        user_language = request.POST['language']
+        translation.activate(user_language)
+        request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+        next = request.POST.get('next', '/')
+        print(next)
+        if len(next) > 3:
+            next = next[3:]
+        print(next)
+        return HttpResponseRedirect(next)
+
+class UserUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'website/propert_manager.html'
+    # model = User
+    # fields = ('first_name', 'phone', 'profile_picture')
+    form_class = PropertyManagerForm
+    success_message = "User has Updated"
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+class ProperyManagerView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'website/propert_manager.html'
+    # model = User
+    # fields = ('first_name', 'phone', 'profile_picture')
+    form_class = PropertyManagerForm
+    success_message = "User has Updated"
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 

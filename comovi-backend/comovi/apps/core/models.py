@@ -9,6 +9,9 @@ from comovi.apps.core.translations import translations
 from django.utils.timezone import now
 from django.urls import reverse
 from django.template.defaultfilters import slugify
+from django.utils.translation import gettext_lazy as _
+from django.core.validators import RegexValidator
+
 
 def get_path_user_profile_picture(instance, filename):
     print(instance)
@@ -85,30 +88,31 @@ class User(AbstractUser, BaseModel):
     FEMALE = 2
 
     GENDER_CHOICES = (
-        (MALE, translations['male']),
-        (FEMALE, translations['female']),
+        (MALE, _(translations['male'])),
+        (FEMALE, _(translations['female'])),
     )
 
-    first_name = models.CharField(max_length=30, verbose_name=translations['first_name'])
-    last_name = models.CharField(max_length=30, verbose_name=translations['last_name'])
-    mother_last_name = models.CharField(max_length=30, verbose_name=translations['mother_last_name'], null=True,
+    first_name = models.CharField(max_length=30, verbose_name=_(translations['first_name']))
+    last_name = models.CharField(max_length=30, verbose_name=_(translations['last_name']))
+    mother_last_name = models.CharField(max_length=30, verbose_name=_(translations['mother_last_name']), null=True,
                                         blank=True)
 
-    rfc = models.CharField(max_length=13, null=True, blank=True, verbose_name=translations['rfc'])
+    rfc = models.CharField(max_length=13, null=True, blank=True, verbose_name=_(translations['rfc']))
     gender = models.PositiveIntegerField(choices=GENDER_CHOICES, default=FEMALE)
-    birth_date = models.DateField(null=True, blank=True, verbose_name=translations['birth_date'])
-    phone = models.CharField(max_length=10, null=True, blank=True, verbose_name=translations['phone'])
-    cell_phone = models.CharField(max_length=10, null=True, blank=True, verbose_name=translations['cell_phone'])
+    birth_date = models.DateField(null=True, blank=True,  verbose_name=_(translations['birth_date']))
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{8,10}$', message="Phone number must be entered in the format: '+999999999'. Up to 10 digits allowed.")
+    phone = models.CharField(validators=[phone_regex], max_length=10,null=True, blank=True, verbose_name=_(translations['phone']))
+    cell_phone = models.CharField(validators=[phone_regex], max_length=10, null=True, blank=True, verbose_name=_(translations['cell_phone']))
     profile_picture = models.ImageField(
         upload_to=get_path_user_profile_picture,
         null=True,
         blank=True,
-        verbose_name=translations['profile_picture']
+        verbose_name=_(translations['profile_picture'])
     )
 
     class Meta:
-        verbose_name = translations['user']
-        verbose_name_plural = translations['users']
+        verbose_name = _(translations['user'])
+        verbose_name_plural = _(translations['users'])
 
     def __str__(self):
         return self.username
@@ -118,6 +122,10 @@ class User(AbstractUser, BaseModel):
 
     def get_absolute_url(self):
         return reverse("website:my_profile")
+
+    def IsPropertyOwner(self):
+        print(AdminProfile.objects.get(user__id=self.id))
+        return AdminProfile.objects.get(user__id=self.id)
 
 
 class Property(BaseModel):
@@ -237,7 +245,7 @@ class CatalogService(BaseModel):
         verbose_name_plural = translations['catalog_services']
 
 
-class PropertyInterior(BaseModel):
+class PropertyInterior(BaseModel): #ye chaiye? yeh dekho jisme hme char filed mil jaye name, phone, logo, password
     EMPTY = 1
     OCCUPIED = 2
     STATUS_OCCUPANCY_CHOICES = (
@@ -445,3 +453,9 @@ class OwnerProfile(BaseModel):
         for property_interior in property_interiors:
             properties |= Property.objects.filter(id=property_interior.property.id)
         return properties
+
+# class PropertyManager(BaseModel):
+#     name = models.CharField(max_length=100)
+#     phone_number = models.IntegerField()
+#     logo = models.ImageField(upload_to=get_path_user_profile_picture, blank=True, null=True)
+#     password = models.CharField(max_length=20)

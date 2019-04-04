@@ -2,9 +2,12 @@ from django import forms
 from django.core.mail import send_mail as sm
 from django.db import models, transaction
 from comovi.apps.core.translations import translations
-from comovi.apps.core.models import InboxMessage, Property, User, get_path_user_profile_picture
+from comovi.apps.core.models import InboxMessage, Property, User, get_path_user_profile_picture, AdminProfile, PropertyInterior
 from django.views.generic import FormView
 from django.urls import reverse
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+from datetime import datetime
 
 class InboxMessageForm(forms.Form):
     to = forms.CharField(required=True)
@@ -55,6 +58,24 @@ class InboxMessageForm(forms.Form):
 
 
 class ProfileModelForm(forms.ModelForm):
+    error_css_class = "form-errors"
+    birth_date = forms.DateField(widget=forms.TextInput(attrs=
+                                {
+                                    'type':'date'
+                                }))
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileModelForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].label = _("Nombre de pila")
+        self.fields['last_name'].label = _("Apellido")
+        self.fields['mother_last_name'].label = _("Apellido de la madre")
+        self.fields['gender'].label = _("Género")
+        self.fields['birth_date'].label = _("Fecha de nacimiento")
+        self.fields['phone'].label = _("Teléfonoo")
+        self.fields['cell_phone'].label = _("Teléfono móvil")
+        self.fields['profile_picture'].label = _("Foto de perfil")
+
+
     class Meta:
         model = User
         fields = (
@@ -69,8 +90,71 @@ class ProfileModelForm(forms.ModelForm):
             'profile_picture'
             )
 
+    def clean_cell_phone(self):
+        cell_phone = self.cleaned_data['cell_phone']
+        if cell_phone:
+            if len(cell_phone) < 8:
+                raise ValidationError('Minimum 8 Numbers required')
+        return cell_phone
 
+    def clean_phone(self):
+        phone = self.cleaned_data['phone']
+        if phone:
+            if len(phone) < 8:
+                raise ValidationError('Minimum 8 Numbers required')
+        return phone
 
+    def clean_rfc(self):
+        rfc = self.cleaned_data['rfc']
+        if rfc:
+            if len(rfc) < 10:
+                raise ValidationError('Minimum 10 Character required')
+        return rfc
 
+    def clean_birth_date(self):
+        birth_date = self.cleaned_data['birth_date']
+        if birth_date:
+            if birth_date >= birth_date.today():
+                raise ValidationError('Birth date should not be greater than current date')
+        return birth_date
 
+class PropertyManagerForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.TextInput(attrs={
+                                    'type':'password',
+                                    'required': "required",
+                                }))
+    confirm_password = forms.CharField(widget=forms.TextInput(attrs={
+                                    'type':'password',
+                                    'required': "required",
+                                }))
 
+    def __init__(self, *args, **kwargs):
+        super(PropertyManagerForm, self).__init__(*args, **kwargs)
+        self.fields['password'].label = _("Password")
+        self.fields['confirm_password'].label = _("Confirm Password")
+        self.fields['first_name'].label = _("Nombre de pila")
+        self.fields['phone'].label = _("Teléfonoo")
+        self.fields['profile_picture'].label = _("Foto de perfil")
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'phone', 'profile_picture')
+        widgets = {
+            'phone': forms.TextInput(attrs={'type': 'number'}),
+            'password': forms.TextInput(attrs={'autocomplete': 'off'}),
+        }
+
+    def clean_confirm_password(self):
+        p1 = self.cleaned_data['password']
+        p2 = self.cleaned_data['confirm_password']
+        if p1 != p2:
+            raise ValidationError(_("password did not match"))
+        return p2
+
+    def save(self, commit=True):
+        user = super(PropertyManagerForm, self).save(commit=False)
+        ps = self.cleaned_data['confirm_password']
+        if ps:
+            user.set_password(ps)
+            user.save()
+        return user

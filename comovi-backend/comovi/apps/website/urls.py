@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -23,5 +23,8 @@ urlpatterns = [
     path('payments/history/', PaymentView.as_view(), name='payment_history'),
     path('page/', PageView.as_view(), name='page'),
     path('detail/',DetailMsgView.as_view(), name='detail_msg'),
+    path('language/', LanguageSelect, name="LanguageSelect"),
+    path('user-edit/', UserUpdate.as_view(), name ='update_user' ),
+    path('property-manager/', ProperyManagerView.as_view(), name ='Property_manager' )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
